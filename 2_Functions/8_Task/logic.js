@@ -17,4 +17,4 @@ console.log((If)(False)("2")("3"));
 //export const False = () => (y) => y;
 
 // export const If = (f) => f;
-// END
+// EN
