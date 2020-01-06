@@ -3,7 +3,7 @@ import { length, toUpperCase } from './strings';
 const bigLettersCount = (str) => {
   // BEGIN (write your solution here)
     let count = 0;
-    for (let i = 0; i < length(str); i++) {
+    for (let i = 0; i < str.length; i++) {
       if (toUpperCase(str[i]) === str[i] || toUpperCase(str[i]) ===" ") {
         count += 1;
       } 
@@ -13,7 +13,7 @@ const bigLettersCount = (str) => {
     // END
 };
 
-// console.log(bigLettersCount('ADdsadsad DDD'));
+console.log(bigLettersCount('ADdsadsad DDD'));
 
 
 const compare = (first, second) => {
