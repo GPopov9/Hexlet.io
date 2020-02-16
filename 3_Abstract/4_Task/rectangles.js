@@ -4,35 +4,19 @@ import { makePoint, getX, getY, quadrant, toString as pointToString } from '@hex
 import { cons, car, cdr, toString as pairToString } from '@hexlet/pairs';
 
 // BEGIN (write your solution here)
-
-export const makeRectangle = (start, width, height) => cons(start, cons(width,height));
+export const makeRectangle = (start, width, height) => cons(start, cons(width, height));
 export const getStartPoint = (rectangle) => car(rectangle);
-export const getWidth = rectangle => car(cdr(rectangle));
-export const getHeight = rectangle => cdr(cdr(rectangle));
-export const square = rectangle => getWidth(rectangle) * getHeight(rectangle);
-export const perimeter = rectangle => 2 * (getWidth(rectangle) + getHeight(rectangle));
-export const containsTheOrigin = rectangle => {
-  let start = getStartPoint(rectangle);
-  let xStart = getX(start);
-  let yStart = getY(start);
+export const getWidth = (rectangle) => car(cdr(rectangle));
+export const getHeight = (rectangle) => cdr(cdr(rectangle));
+export const square = (rectangle) => getWidth(rectangle) * getHeight(rectangle);
+export const perimeter = (rectangle) => 2 * (getWidth(rectangle) + getHeight(rectangle));
+export const containsTheOrigin = (rectangle) => {
+  const point1 = getStartPoint(rectangle);
+  const point2 = makePoint(getX(point1) + getWidth(rectangle), getY(point1) - getHeight(rectangle));
 
-  let quadrantTopLeft = quadrant(start);
-  let quadrantTopRight = quadrant(makePoint(xStart + getWidth(rectangle),yStart));
-  let quadrantLowRight = quadrant(makePoint(xStart + getWidth(rectangle),yStart - getHeight(rectangle)));
-  let quadrantLowLeft = quadrant(makePoint(xStart,yStart - getHeight(rectangle)));
-  
-  console.log(quadrantTopRight);
-  console.log(quadrantTopLeft);
-  console.log(quadrantLowLeft);
-  console.log(quadrantLowRight);
-  
-
-  if (quadrantTopLeft === 2 && quadrantTopRight === 1 && quadrantLowRight === 4 && quadrantLowLeft === 3) {
-    return true;
-  } else return false;
-
-
+  return quadrant(point1) === 2 && quadrant(point2) === 4;
 };
-
-
 // END
+
+
+
