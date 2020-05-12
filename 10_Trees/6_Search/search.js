@@ -22,3 +22,19 @@ const findFilesByName = (tree, str) => {
   export default findFilesByName;
   // END
   
+  // BEGIN
+const findFilesByName = (tree, substr) => {
+    const iter = (node, ancestry) => {
+      const name = getName(node);
+      const newAncestry = path.join(ancestry, name);
+      if (isFile(node)) {
+        return name.includes(substr) ? [newAncestry] : [];
+      }
+      const children = getChildren(node);
+      return children.map((child) => iter(child, newAncestry)).flat();
+    };
+  
+    return iter(tree, '');
+  };
+  
+  export default findFilesByName;
